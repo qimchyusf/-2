@@ -1,1 +1,1567 @@
-# -2
+[index - Copie.html](https://github.com/user-attachments/files/27122113/index.-.Copie.html)
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>فضاء التخطيط والتقويم التربوي الذكي</title>
+
+<style>
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    direction: rtl;
+    text-align: right;
+    padding: 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+  }
+
+  h2 {
+    color: #333;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 28px;
+  }
+
+  .form-group {
+    margin-bottom: 20px;
+  }
+
+  label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: bold;
+    color: #555;
+    font-size: 14px;
+  }
+
+  input, textarea, select {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.3s;
+    font-family: inherit;
+  }
+
+  input:focus, textarea:focus, select:focus {
+    outline: none;
+    border-color: #667eea;
+  }
+
+  textarea {
+    height: 150px;
+    resize: vertical;
+  }
+
+  button {
+    padding: 12px 30px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+
+  button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  }
+
+  .lang-btn {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    margin-bottom: 20px;
+    width: auto;
+    display: inline-block;
+  }
+
+  pre {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 20px;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    border: 1px solid #e0e0e0;
+    max-height: 600px;
+    overflow-y: auto;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .required:after {
+    content: " *";
+    color: red;
+  }
+
+  .alert {
+    padding: 12px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    display: none;
+  }
+
+  .alert-error {
+    background: #fee;
+    color: #c33;
+    border: 1px solid #fcc;
+  }
+
+  .alert-success {
+    background: #efe;
+    color: #3c3;
+    border: 1px solid #cfc;
+  }
+
+  .row {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+  }
+
+  .row .form-group {
+    flex: 1;
+    margin-bottom: 0;
+  }
+
+  .lesson-row {
+    display: flex;
+    gap: 15px;
+    align-items: flex-end;
+  }
+
+  .lesson-row .lesson-select {
+    flex: 2;
+  }
+
+  .lesson-row .duration-box {
+    flex: 1;
+    background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
+    border-right: 4px solid #4caf50;
+    padding: 0 12px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    height: 48px;
+  }
+
+  .lesson-row .duration-box label {
+    margin-bottom: 0;
+    margin-left: 10px;
+    font-size: 13px;
+    color: #2e7d32;
+    white-space: nowrap;
+  }
+
+  .lesson-row .duration-box input {
+    width: auto;
+    flex: 1;
+    background-color: #fff;
+    border-color: #4caf50;
+    font-weight: bold;
+    color: #2e7d32;
+    font-size: 14px;
+    padding: 8px;
+    margin: 0;
+    text-align: center;
+    direction: ltr;
+  }
+
+  .goals-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+  }
+
+  .goals-buttons button {
+    padding: 8px 15px;
+    font-size: 12px;
+    margin-top: 0;
+    width: auto;
+  }
+
+  .btn-save {
+    background: linear-gradient(135deg, #4caf50 0%, #45a049 100%);
+  }
+
+  .btn-add {
+    background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+    margin-top: 10px;
+    width: auto;
+    padding: 8px 20px;
+  }
+
+  .btn-remove {
+    background: linear-gradient(135deg, #f44336 0%, #d32f2f 100%);
+    padding: 6px 12px;
+    font-size: 12px;
+    width: auto;
+  }
+
+  .items-list {
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 15px;
+    margin-top: 10px;
+  }
+
+  .item-card {
+    background: white;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .item-info {
+    flex: 1;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  .item-info span {
+    background: #f0f0f0;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      padding: 20px;
+    }
+    
+    button {
+      width: 100%;
+    }
+    
+    .row {
+      flex-direction: column;
+      gap: 15px;
+    }
+    
+    .row .form-group {
+      margin-bottom: 15px;
+    }
+    
+    .lesson-row {
+      flex-direction: column;
+    }
+    
+    .lesson-row .duration-box {
+      height: auto;
+      padding: 10px;
+    }
+    
+    .goals-buttons {
+      flex-direction: column;
+    }
+    
+    .goals-buttons button {
+      width: 100%;
+    }
+    
+    .item-card {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .item-info {
+      justify-content: center;
+    }
+  }
+</style>
+</head>
+
+<body>
+<div class="container">
+  <button class="lang-btn" onclick="toggleUILang()" id="langBtn">🌐 Français</button>
+
+  <h2 id="title">📘 فضاء التخطيط والتقويم التربوي الذكي</h2>
+
+  <div id="alert" class="alert"></div>
+
+  <div class="form-group">
+    <label id="label-task" class="required">نوع المهمة:</label>
+    <select id="taskType" onchange="toggleFieldsByTaskType()">
+      <option value="situation">تحويل تمرين إلى وضعيات-مشكلة</option>
+      <option value="lesson_plan">إعداد بطاقة درس</option>
+      <option value="test">إعداد فرض محروس</option>
+      <option value="spec_table">إعداد جدول التخصيص</option>
+      <option value="correction_grid">إعداد شبكة التصحيح</option>
+      <option value="support_plan">إعداد خطة الدعم والمعالجة</option>
+    </select>
+  </div>
+
+  <!-- الحقول العادية (للمهام الأخرى) -->
+  <div id="normalFields">
+    <div class="row">
+      <div class="form-group">
+        <label id="label-level" class="required">المستوى:</label>
+        <select id="level">
+          <option value="">-- اختر المستوى --</option>
+          <option value="1">1AC</option>
+          <option value="2">2AC</option>
+          <option value="3">3AC</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label id="label-unit" class="required">الوحدة:</label>
+        <select id="unit">
+          <option value="">-- اختر المستوى أولاً --</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label id="label-lesson" class="required">الدرس:</label>
+      <div class="lesson-row">
+        <div class="lesson-select">
+          <select id="lesson">
+            <option value="">-- اختر المستوى والوحدة أولاً --</option>
+          </select>
+        </div>
+        <div id="durationContainer" class="duration-box" style="display: none;">
+          <label id="label-duration">⏱️ المدة:</label>
+          <input id="duration" type="text" readonly>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- حقل جدول التخصيص (لإضافة عدة دروس ووحدات) -->
+  <div id="specTableFields" style="display: none;">
+    <div class="form-group">
+      <label id="label-level-spec" class="required">المستوى:</label>
+      <select id="levelSpec">
+        <option value="">-- اختر المستوى --</option>
+        <option value="1">1AC</option>
+        <option value="2">2AC</option>
+        <option value="3">3AC</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label id="label-unit-spec">الوحدة:</label>
+      <select id="unitSpec">
+        <option value="">-- اختر المستوى أولاً --</option>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label id="label-lesson-spec">الدرس:</label>
+      <div class="lesson-row">
+        <div class="lesson-select">
+          <select id="lessonSpec">
+            <option value="">-- اختر المستوى والوحدة أولاً --</option>
+          </select>
+        </div>
+        <div class="duration-box" style="position: relative; flex: 1;">
+          <label id="label-duration-spec">⏱️ المدة:</label>
+          <input id="durationSpec" type="text" readonly style="background-color: #f5f5f5;">
+        </div>
+      </div>
+      <button type="button" class="btn-add" onclick="addToSpecTable()" style="margin-top: 10px;">➕ إضافة درس</button>
+    </div>
+
+    <div class="form-group">
+      <label>المحتوى المقرر (الدروس والوحدات المضافة):</label>
+      <div id="specItemsList" class="items-list">
+        <div style="color: #999; text-align: center;">لم تتم إضافة أي درس بعد</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label id="label-goals">الأهداف التعليمية (بالعربية والفرنسية):</label>
+    <textarea id="goals" placeholder="سيتم تعبئتها تلقائياً عند اختيار الدرس - الأهداف باللغتين معاً" style="background-color: #fff; direction: ltr; text-align: left;"></textarea>
+    <div class="goals-buttons">
+      <button type="button" class="btn-save" onclick="saveGoals()">💾 حفظ</button>
+    </div>
+    <small id="goalsStatus" style="color: #666; font-size: 11px;"></small>
+  </div>
+
+  <!-- حقل التمرين - يظهر فقط في وضع تحويل تمرين إلى وضعيات مشكلة -->
+  <div id="exerciseField" style="display: block;">
+    <div class="form-group">
+      <label id="label-exercise">التمرين المراد تحويله:</label>
+      <textarea id="exercise" placeholder="أدخل التمرين الذي تريد تحويله إلى وضعيات-مشكلة..."></textarea>
+    </div>
+  </div>
+
+  <!-- حقل الفقرات - يظهر فقط في وضع إعداد بطاقة درس -->
+  <div id="paragraphsField" style="display: none;">
+    <div class="form-group">
+      <label id="label-paragraphs">عناوين الفقرات / المحتويات الأساسية:</label>
+      <textarea id="paragraphs" placeholder="اكتب عناوين الفقرات أو المحتويات الأساسية (اختياري)"></textarea>
+    </div>
+  </div>
+
+  <div style="display: flex; gap: 15px; margin-bottom: 20px; flex-wrap: wrap;">
+    <button onclick="generate()" id="generateBtn">🚀 تحويل إلى وضعيات-مشكلة</button>
+    <button onclick="generateTestWithSpecTable()" id="generateTestBtn" style="display: none; background: linear-gradient(135deg, #ff9800 0%, #f57c00 100%);">📝 إنشاء الفرض من جدول التخصيص</button>
+  </div>
+
+  <pre id="result">النتيجة ستظهر هنا...</pre>
+</div>
+
+<script>
+// ======================== قاعدة البيانات الثنائية اللغة للأهداف ========================
+// أسماء الدروس بالفرنسية والعربية (مقابل)
+const lessonNamesFr = {
+  "الماء": "L'eau",
+  "الحالات الفيزيائية الثلاث للمادة": "Les trois états physiques de la matière",
+  "الحجم": "Le volume",
+  "الكتلة": "La masse",
+  "الكثافة": "La masse volumique",
+  "الضغط والضغط الجوي": "La pression et la pression atmosphérique",
+  "النموذج الجسيمي للمادة": "Le modèle particulaire de la matière",
+  "الحرارة ودرجة الحرارة": "Chaleur et température",
+  "التحولات الفيزيائية للمادة": "Les transformations physiques de la matière",
+  "المزائج": "Les mélanges",
+  "فصل مكونات مزيج": "Séparation des constituants d'un mélange",
+  "معالجة المياه": "Traitement des eaux",
+  "الكهرباء حولنا": "L'électricité autour de nous",
+  "الدائرة الكهربائية البسيطة": "Le circuit électrique simple",
+  "النواقل والعوازل الكهربائية": "Conducteurs et isolants électriques",
+  "أنواع التركيبات الكهربائية": "Différents types de montages électriques",
+  "التيار الكهربائي المستمر": "Le courant électrique continu",
+  "تأثير المقاومة الكهربائية": "Effet de la résistance électrique",
+  "قانون العقد وقانون جمع التوترات": "Loi des nœuds et loi d'additivité des tensions",
+  "الوقاية من مخاطر التيار الكهربائي": "Prévention contre les dangers du courant électrique",
+  "الهواء الذي يحيط بنا": "L'air qui nous entoure",
+  "بعض خصائص الهواء ومكوناته": "Quelques propriétés de l'air et ses constituants",
+  "الجزيئات والذرات": "Molécules et atomes",
+  "التفاعل الكيميائي: الاحتراقات": "Réaction chimique : combustions",
+  "التفاعل الكيميائي: المفهوم والقوانين": "Réaction chimique : notion et lois",
+  "المواد الطبيعية والمواد الاصطناعية": "Substances naturelles et substances synthétiques",
+  "تلوث الهواء": "La pollution de l'air",
+  "التيار الكهربائي المتناوب الجيبي": "Le courant électrique alternatif sinusoïdal",
+  "التركيب الكهربائي المنزلي": "L'installation électrique domestique",
+  "مصادر ومستقبلات الضوء": "Sources et récepteurs de lumière",
+  "الضوء والألوان - تشتت الضوء": "Lumière et couleurs – dispersion de la lumière",
+  "انتشار الضوء": "Propagation de la lumière",
+  "تطبيقات الانتشار المستقيمي للضوء": "Application de la propagation rectiligne de la lumière",
+  "العدسات الرقيقة": "Les lentilles minces",
+  "صورة جسم بواسطة عدسة رقيقة مجمعة": "Image d'un objet obtenue par une lentille mince convergente",
+  "تطبيقات: دراسة بعض الأدوات البصرية": "Applications : étude de quelques instruments optiques",
+  "بعض المواد في حياتنا اليومية": "Quelques matériaux dans notre vie quotidienne",
+  "المواد والكهرباء": "Matériaux et électricité",
+  "تفاعلات أكسدة بعض المعادن مع الهواء": "Réactions d'oxydations de quelques métaux avec l'air",
+  "تفاعل المواد العضوية مع ثنائي الأكسجين": "Réaction des matériaux organiques avec le dioxygène de l'air",
+  "المحاليل الحمضية والمحاليل القاعدية - مفهوم pH": "Les solutions acides et les solutions basiques – notion de pH",
+  "التفاعلات الكيميائية لبعض المعادن مع المحاليل الحمضية والقاعدية": "Réactions chimiques de quelques métaux avec les solutions acides et les solutions basiques",
+  "اختبارات التعرف على بعض الأيونات": "Tests d'identifications de quelques ions",
+  "خطورة بعض المواد المستعملة في حياتنا اليومية": "Danger de quelques matériaux utilisés dans notre vie quotidienne",
+  "المقاومة الكهربائية - قانون أوم": "Résistance électrique – loi d'Ohm",
+  "القدرة الكهربائية": "Puissance électrique",
+  "الطاقة الكهربائية": "Énergie électrique",
+  "الحركة والسكون": "Mouvement et repos",
+  "الأفعال الميكانيكية": "Les actions mécaniques",
+  "مفهوم القوة": "Notion de force",
+  "توازن جسم خاضع لقوتين": "Équilibre d'un corps soumis à deux forces",
+  "الوزن والكتلة": "Poids et masse"
+};
+
+// أهداف مزدوجة اللغة (العربية + الفرنسية)
+const bilingualGoals = {
+  "الماء": "معرفة مصادر المياه وأهميتها للكائنات الحية.\nConnaître les sources de l'eau et son importance pour les êtres vivants.\n\nمعرفة الحالات الفيزيائية الثلاث للماء.\nConnaître les trois états physiques de l'eau.",
+  "الحالات الفيزيائية الثلاث للمادة": "- التمييز بين الحالات الفيزيائية للمادة.\n- Distinguer les états physiques de la matière.\n- معرفة خصائص كل حالة.\n- Connaître les caractéristiques de chaque état.",
+  "الحجم": "- معرفة مفهوم الحجم ووحداته.\n- Connaître la notion de volume et ses unités.\n- قياس حجم الجسم تجريبياً.\n- Mesurer expérimentalement le volume d'un corps.",
+  "الكتلة": "- معرفة وحدة الكتلة.\n- Connaître l'unité de la masse.\n- تحديد كتلة الجسم تجريبياً.\n- Déterminer expérimentalement la masse d'un corps.",
+  "الكثافة": "- معرفة معنى الكثافة ووحدتها.\n- Connaître la signification de la masse volumique et son unité.\n- حساب الكثافة.\n- Calculer la masse volumique.",
+  "الضغط والضغط الجوي": "- معرفة مفهوم الضغط والضغط الجوي.\n- Connaître la notion de pression et de pression atmosphérique.\n- استخدام أجهزة قياس الضغط.\n- Utiliser des appareils de mesure de pression.",
+  "النموذج الجسيمي للمادة": "- معرفة النموذج الجسيمي للمادة.\n- Connaître le modèle particulaire de la matière.\n- تفسير خصائص حالات المادة.\n- Expliquer les propriétés des états de la matière.",
+  "الحرارة ودرجة الحرارة": "- التمييز بين الحرارة ودرجة الحرارة.\n- Distinguer chaleur et température.\n- قياس درجة الحرارة.\n- Mesurer la température.",
+  "التحولات الفيزيائية للمادة": "- معرفة المصطلحات المرتبطة بالتحولات الفيزيائية.\n- Connaître les termes liés aux transformations physiques.\n- تفسير تغير الحالة.\n- Expliquer le changement d'état.",
+  "المزائج": "- تعريف المزيج.\n- Définir le mélange.\n- التمييز بين المزيج المتجانس وغير المتجانس.\n- Distinguer mélange homogène et hétérogène.",
+  "فصل مكونات مزيج": "- معرفة تقنيات الفصل.\n- Connaître les techniques de séparation.\n- التمييز بين الجسم النقي والمزيج.\n- Distinguer corps pur et mélange.",
+  "معالجة المياه": "- معرفة مصادر تلوث المياه.\n- Connaître les sources de pollution de l'eau.\n- معرفة مراحل معالجة المياه المستعملة.\n- Connaître les étapes du traitement des eaux usées.\n- اقتراح إجراءات عملية لمحاربة تلوث المياه.\n- Proposer des actions concrètes pour lutter contre la pollution de l'eau.",
+  "الكهرباء حولنا": "- معرفة أهمية الكهرباء.\n- Connaître l'importance de l'électricité.\n- التمييز بين النواقل والعوازل.\n- Distinguer conducteurs et isolants.\n- تطبيق قواعد السلامة.\n- Appliquer les règles de sécurité.",
+  "الدائرة الكهربائية البسيطة": "- معرفة عناصر دائرة كهربائية بسيطة.\n- Connaître les éléments d'un circuit électrique simple.\n- تمثيل دائرة كهربائية.\n- Représenter un circuit électrique.",
+  "النواقل والعوازل الكهربائية": "- تعريف الناقل الكهربائي والعازل الكهربائي.\n- Définir conducteur électrique et isolant électrique.\n- التمييز بين المواد الناقلة والعازلة.\n- Distinguer matériaux conducteurs et isolants.",
+  "أنواع التركيبات الكهربائية": "- معرفة نوعي التركيبات الكهربائية.\n- Connaître les deux types de montages électriques.\n- التمييز بين التركيب على التسلسل وعلى التوازي.\n- Distinguer montage en série et en dérivation.",
+  "التيار الكهربائي المستمر": "- معرفة مصادر التيار الكهربائي المستمر.\n- Connaître les sources du courant électrique continu.\n- استخدام أجهزة القياس.\n- Utiliser les appareils de mesure.",
+  "تأثير المقاومة الكهربائية": "- تعريف الناقل الأومي.\n- Définir le conducteur ohmique.\n- معرفة تأثير المقاومة على شدة التيار.\n- Connaître l'effet de la résistance sur l'intensité du courant.",
+  "قانون العقد وقانون جمع التوترات": "- معرفة قانون العقد.\n- Connaître la loi des nœuds.\n- تطبيق قانون جمع التوترات.\n- Appliquer la loi d'additivité des tensions.",
+  "الوقاية من مخاطر التيار الكهربائي": "- معرفة القصر الكهربائي.\n- Connaître le court-circuit.\n- معرفة دور المنصهر.\n- Connaître le rôle du fusible.\n- معرفة احتياطات السلامة.\n- Connaître les précautions de sécurité.",
+  "الهواء الذي يحيط بنا": "- معرفة طبقات الغلاف الجوي.\n- Connaître les couches de l'atmosphère.\n- شرح تشكل الرياح.\n- Expliquer la formation des vents.",
+  "بعض خصائص الهواء ومكوناته": "- معرفة مكونات الهواء ونسبها.\n- Connaître les constituants de l'air et leurs pourcentages.",
+  "الجزيئات والذرات": "- تعريف الذرة والجزيء.\n- Définir atome et molécule.\n- كتابة الصيغ الكيميائية.\n- Écrire les formules chimiques.",
+  "التفاعل الكيميائي: الاحتراقات": "- التمييز بين الاحتراق التام وغير التام.\n- Distinguer combustion complète et incomplète.\n- معرفة منتوجات الاحتراق.\n- Connaître les produits de la combustion.",
+  "التفاعل الكيميائي: المفهوم والقوانين": "- كتابة معادلة تفاعل.\n- Écrire une équation de réaction.\n- تطبيق قانون حفظ الكتلة.\n- Appliquer la loi de conservation de la masse.",
+  "المواد الطبيعية والمواد الاصطناعية": "- التمييز بين المواد الطبيعية والاصطناعية.\n- Distinguer substances naturelles et synthétiques.\n- معرفة مشتقات البترول.\n- Connaître les dérivés du pétrole.",
+  "تلوث الهواء": "- معرفة أسباب تلوث الهواء.\n- Connaître les causes de la pollution de l'air.\n- معرفة تدابير الحد من التلوث.\n- Connaître les mesures de réduction de la pollution.",
+  "مصادر ومستقبلات الضوء": "- التمييز بين المصادر الضوئية الأساسية والثانوية.\n- Distinguer sources primaires et secondaires de lumière.",
+  "الضوء والألوان - تشتت الضوء": "- معرفة ظاهرة تشتت الضوء الأبيض.\n- Connaître le phénomène de dispersion de la lumière blanche.\n- معرفة تركيب الضوء الأبيض.\n- Connaître la composition de la lumière blanche.",
+  "انتشار الضوء": "- معرفة مبدأ انتشار الضوء في خط مستقيم.\n- Connaître le principe de propagation rectiligne de la lumière.\n- معرفة سرعة انتشار الضوء.\n- Connaître la vitesse de propagation de la lumière.",
+  "تطبيقات الانتشار المستقيمي للضوء": "- شرح الظلال والكسوف.\n- Expliquer ombres et éclipses.\n- بناء الصورة باستخدام الغرفة المظلمة.\n- Construire l'image à l'aide de la chambre noire.",
+  "العدسات الرقيقة": "- التمييز بين العدسة المجمعة والعدسة المفرقة.\n- Distinguer lentille convergente et divergente.\n- تحديد البعد البؤري.\n- Déterminer la distance focale.",
+  "صورة جسم بواسطة عدسة رقيقة مجمعة": "- إنشاء صورة جسم باستخدام عدسة مجمعة.\n- Construire l'image d'un objet à l'aide d'une lentille convergente.\n- تحديد خصائص الصورة.\n- Déterminer les caractéristiques de l'image.",
+  "تطبيقات: دراسة بعض الأدوات البصرية": "- معرفة مبدأ العدسة المكبرة.\n- Connaître le principe de la loupe.\n- معرفة عيوب العين.\n- Connaître les défauts de l'œil.",
+  "بعض المواد في حياتنا اليومية": "- تصنيف المواد.\n- Classer les matériaux.\n- معرفة خصائص الحديد والنحاس.\n- Connaître les propriétés du fer et du cuivre.",
+  "المواد والكهرباء": "- معرفة مكونات الذرة.\n- Connaître les constituants de l'atome.\n- تعريف الأيون.\n- Définir l'ion.",
+  "تفاعلات أكسدة بعض المعادن مع الهواء": "- معرفة عوامل الأكسدة.\n- Connaître les facteurs d'oxydation.\n- كتابة المعادلات.\n- Écrire les équations.",
+  "تفاعل المواد العضوية مع ثنائي الأكسجين": "- معرفة منتوجات الاحتراق.\n- Connaître les produits de la combustion.\n- معرفة المخاطر.\n- Connaître les risques.",
+  "المحاليل الحمضية والمحاليل القاعدية - مفهوم pH": "- معرفة مفهوم الأس الهيدروجيني pH.\n- Connaître la notion de pH.\n- تصنيف المحاليل.\n- Classer les solutions.",
+  "التفاعلات الكيميائية لبعض المعادن مع المحاليل الحمضية والقاعدية": "- كتابة معادلات التفاعل.\n- Écrire les équations de réaction.",
+  "اختبارات التعرف على بعض الأيونات": "- معرفة اختبارات التعرف على الأيونات.\n- Connaître les tests d'identification des ions.",
+  "خطورة بعض المواد المستعملة في حياتنا اليومية": "- معرفة مخاطر النفايات.\n- Connaître les dangers des déchets.\n- معرفة تقنيات التدوير.\n- Connaître les techniques de recyclage.",
+  "الحركة والسكون": "- التمييز بين الحركة والسكون.\n- Distinguer mouvement et repos.\n- حساب السرعة.\n- Calculer la vitesse.",
+  "الأفعال الميكانيكية": "- تحديد تأثيرات القوى.\n- Déterminer les effets des forces.\n- التمييز بين التماس وعن بعد.\n- Distinguer contact et distance.",
+  "مفهوم القوة": "- معرفة خصائص القوة.\n- Connaître les caractéristiques d'une force.\n- تمثيل القوة.\n- Représenter une force.",
+  "توازن جسم خاضع لقوتين": "- معرفة شرط التوازن.\n- Connaître la condition d'équilibre.",
+  "الوزن والكتلة": "- التمييز بين الوزن والكتلة.\n- Distinguer poids et masse.\n- تطبيق العلاقة P = m.g\n- Appliquer la relation P = m.g",
+  "المقاومة الكهربائية - قانون أوم": "- تطبيق قانون أوم U = R.I\n- Appliquer la loi d'Ohm U = R.I",
+  "القدرة الكهربائية": "- معرفة القدرة الكهربائية.\n- Connaître la puissance électrique.\n- تطبيق P = U.I\n- Appliquer P = U.I",
+  "الطاقة الكهربائية": "- معرفة الطاقة الكهربائية.\n- Connaître l'énergie électrique.\n- تطبيق E = P.t\n- Appliquer E = P.t"
+};
+
+// أسماء الوحدات الثنائية اللغة
+const unitNames = {
+  ar: {
+    "matiere_environnement": "المادة والبيئة",
+    "electricite": "الكهرباء",
+    "mecanique": "الميكانيك",
+    "lumiere_image": "الضوء والصورة"
+  },
+  fr: {
+    "matiere_environnement": "Matière et environnement",
+    "electricite": "Électricité",
+    "mecanique": "Mécanique",
+    "lumiere_image": "Lumière et image"
+  }
+};
+
+// قائمة الدروس حسب المستوى والوحدة
+const lessonsDataAr = {
+  "1": {
+    "matiere_environnement": [
+      "الماء", "الحالات الفيزيائية الثلاث للمادة", "الحجم", "الكتلة", "الكثافة",
+      "الضغط والضغط الجوي", "النموذج الجسيمي للمادة", "الحرارة ودرجة الحرارة",
+      "التحولات الفيزيائية للمادة", "المزائج", "فصل مكونات مزيج", "معالجة المياه"
+    ],
+    "electricite": [
+      "الكهرباء حولنا", "الدائرة الكهربائية البسيطة", "النواقل والعوازل الكهربائية",
+      "أنواع التركيبات الكهربائية", "التيار الكهربائي المستمر", "تأثير المقاومة الكهربائية",
+      "قانون العقد وقانون جمع التوترات", "الوقاية من مخاطر التيار الكهربائي"
+    ]
+  },
+  "2": {
+    "matiere_environnement": [
+      "الهواء الذي يحيط بنا", "بعض خصائص الهواء ومكوناته", "الجزيئات والذرات",
+      "التفاعل الكيميائي: الاحتراقات", "التفاعل الكيميائي: المفهوم والقوانين",
+      "المواد الطبيعية والمواد الاصطناعية", "تلوث الهواء"
+    ],
+    "electricite": [
+      "التيار الكهربائي المتناوب الجيبي", "التركيب الكهربائي المنزلي"
+    ],
+    "lumiere_image": [
+      "مصادر ومستقبلات الضوء", "الضوء والألوان - تشتت الضوء", "انتشار الضوء",
+      "تطبيقات الانتشار المستقيمي للضوء", "العدسات الرقيقة",
+      "صورة جسم بواسطة عدسة رقيقة مجمعة", "تطبيقات: دراسة بعض الأدوات البصرية"
+    ]
+  },
+  "3": {
+    "matiere_environnement": [
+      "بعض المواد في حياتنا اليومية", "المواد والكهرباء", "تفاعلات أكسدة بعض المعادن مع الهواء",
+      "تفاعل المواد العضوية مع ثنائي الأكسجين", "المحاليل الحمضية والمحاليل القاعدية - مفهوم pH",
+      "التفاعلات الكيميائية لبعض المعادن مع المحاليل الحمضية والقاعدية",
+      "اختبارات التعرف على بعض الأيونات", "خطورة بعض المواد المستعملة في حياتنا اليومية"
+    ],
+    "electricite": [
+      "المقاومة الكهربائية - قانون أوم", "القدرة الكهربائية", "الطاقة الكهربائية"
+    ],
+    "mecanique": [
+      "الحركة والسكون", "الأفعال الميكانيكية", "مفهوم القوة",
+      "توازن جسم خاضع لقوتين", "الوزن والكتلة"
+    ]
+  }
+};
+
+// المدة الزمنية لكل درس
+const durationByLesson = {
+  "الماء": "2h", "الحالات الفيزيائية الثلاث للمادة": "1h", "الحجم": "1.5h", "الكتلة": "1.5h",
+  "الكثافة": "1.5h", "الضغط والضغط الجوي": "1.5h", "النموذج الجسيمي للمادة": "1h",
+  "الحرارة ودرجة الحرارة": "2h", "التحولات الفيزيائية للمادة": "2h", "المزائج": "2h",
+  "فصل مكونات مزيج": "2h", "معالجة المياه": "2h", "الكهرباء حولنا": "1h",
+  "الدائرة الكهربائية البسيطة": "1.5h", "النواقل والعوازل الكهربائية": "1.5h", "أنواع التركيبات الكهربائية": "3h",
+  "التيار الكهربائي المستمر": "3h", "تأثير المقاومة الكهربائية": "3h", "قانون العقد وقانون جمع التوترات": "4h",
+  "الوقاية من مخاطر التيار الكهربائي": "3h", "الهواء الذي يحيط بنا": "2h", "بعض خصائص الهواء ومكوناته": "1h",
+  "الجزيئات والذرات": "3h", "التفاعل الكيميائي: الاحتراقات": "5h", "التفاعل الكيميائي: المفهوم والقوانين": "5h",
+  "المواد الطبيعية والمواد الاصطناعية": "2h", "تلوث الهواء": "2h", "مصادر ومستقبلات الضوء": "3h",
+  "الضوء والألوان - تشتت الضوء": "2h", "انتشار الضوء": "3h", "تطبيقات الانتشار المستقيمي للضوء": "2h",
+  "العدسات الرقيقة": "2h", "صورة جسم بواسطة عدسة رقيقة مجمعة": "2h", "تطبيقات: دراسة بعض الأدوات البصرية": "2h",
+  "التيار الكهربائي المتناوب الجيبي": "2h", "التركيب الكهربائي المنزلي": "2h", "بعض المواد في حياتنا اليومية": "2h",
+  "المواد والكهرباء": "4h", "تفاعلات أكسدة بعض المعادن مع الهواء": "2h", "تفاعل المواد العضوية مع ثنائي الأكسجين": "2h",
+  "المحاليل الحمضية والمحاليل القاعدية - مفهوم pH": "3h", "التفاعلات الكيميائية لبعض المعادن مع المحاليل الحمضية والقاعدية": "3h",
+  "اختبارات التعرف على بعض الأيونات": "2h", "خطورة بعض المواد المستعملة في حياتنا اليومية": "2h",
+  "الحركة والسكون": "5h", "الأفعال الميكانيكية": "2h", "مفهوم القوة": "3h",
+  "توازن جسم خاضع لقوتين": "2h", "الوزن والكتلة": "2h", "المقاومة الكهربائية - قانون أوم": "1h",
+  "القدرة الكهربائية": "2h", "الطاقة الكهربائية": "3h"
+};
+
+// متغيرات التطبيق
+let currentLang = "ar";
+let customGoals = {};
+let specTableItems = [];
+
+// دالة لإظهار/إخفاء الحقول حسب نوع المهمة
+function toggleFieldsByTaskType() {
+  const taskType = document.getElementById("taskType").value;
+  const exerciseField = document.getElementById("exerciseField");
+  const paragraphsField = document.getElementById("paragraphsField");
+  const normalFields = document.getElementById("normalFields");
+  const specTableFields = document.getElementById("specTableFields");
+  const generateBtn = document.getElementById("generateBtn");
+  const generateTestBtn = document.getElementById("generateTestBtn");
+  
+  if (taskType === "situation") {
+    if (normalFields) normalFields.style.display = "block";
+    if (specTableFields) specTableFields.style.display = "none";
+    if (exerciseField) exerciseField.style.display = "block";
+    if (paragraphsField) paragraphsField.style.display = "none";
+    if (generateBtn) generateBtn.style.display = "inline-block";
+    if (generateTestBtn) generateTestBtn.style.display = "none";
+    if (generateBtn) generateBtn.innerHTML = (currentLang === "ar") ? "🚀 تحويل إلى وضعيات-مشكلة" : "🚀 Transformer en situations-problèmes";
+  } else if (taskType === "lesson_plan") {
+    if (normalFields) normalFields.style.display = "block";
+    if (specTableFields) specTableFields.style.display = "none";
+    if (exerciseField) exerciseField.style.display = "none";
+    if (paragraphsField) paragraphsField.style.display = "block";
+    if (generateBtn) generateBtn.style.display = "inline-block";
+    if (generateTestBtn) generateTestBtn.style.display = "none";
+    if (generateBtn) generateBtn.innerHTML = (currentLang === "ar") ? "📋 إنشاء بطاقة الدرس" : "📋 Créer la fiche de leçon";
+  } else if (taskType === "spec_table") {
+    if (normalFields) normalFields.style.display = "none";
+    if (specTableFields) specTableFields.style.display = "block";
+    if (exerciseField) exerciseField.style.display = "none";
+    if (paragraphsField) paragraphsField.style.display = "none";
+    if (generateBtn) generateBtn.style.display = "inline-block";
+    if (generateTestBtn) generateTestBtn.style.display = "none";
+    if (generateBtn) generateBtn.innerHTML = (currentLang === "ar") ? "📊 إنشاء جدول التخصيص" : "📊 Créer le tableau de spécification";
+  } else if (taskType === "test") {
+    if (normalFields) normalFields.style.display = "none";
+    if (specTableFields) specTableFields.style.display = "block";
+    if (exerciseField) exerciseField.style.display = "none";
+    if (paragraphsField) paragraphsField.style.display = "none";
+    if (generateBtn) generateBtn.style.display = "none";
+    if (generateTestBtn) generateTestBtn.style.display = "inline-block";
+    if (generateTestBtn) generateTestBtn.innerHTML = (currentLang === "ar") ? "📝 إنشاء الفرض من جدول التخصيص" : "📝 Créer l'examen à partir du tableau de spécification";
+  } else {
+    if (normalFields) normalFields.style.display = "block";
+    if (specTableFields) specTableFields.style.display = "none";
+    if (exerciseField) exerciseField.style.display = "block";
+    if (paragraphsField) paragraphsField.style.display = "block";
+    if (generateBtn) generateBtn.style.display = "inline-block";
+    if (generateTestBtn) generateTestBtn.style.display = "none";
+    if (generateBtn) generateBtn.innerHTML = (currentLang === "ar") ? "🚀 إنشاء" : "🚀 Générer";
+  }
+}
+
+// دالة لإضافة درس إلى جدول التخصيص
+function addToSpecTable() {
+  const level = document.getElementById("levelSpec").value;
+  const unit = document.getElementById("unitSpec").value;
+  const lesson = document.getElementById("lessonSpec").value;
+  
+  if (!level) {
+    showAlert((currentLang === "ar") ? "الرجاء اختيار المستوى" : "Veuillez choisir le niveau", "error");
+    return;
+  }
+  if (!unit) {
+    showAlert((currentLang === "ar") ? "الرجاء اختيار الوحدة" : "Veuillez choisir l'unité", "error");
+    return;
+  }
+  if (!lesson) {
+    showAlert((currentLang === "ar") ? "الرجاء اختيار الدرس" : "Veuillez choisir la leçon", "error");
+    return;
+  }
+  
+  const duration = durationByLesson[lesson];
+  if (!duration) {
+    showAlert((currentLang === "ar") ? "المدة غير محددة لهذا الدرس" : "Durée non définie pour cette leçon", "error");
+    return;
+  }
+  
+  const levelText = (level === "1") ? "1AC" : (level === "2") ? "2AC" : "3AC";
+  const unitText = unitNames[currentLang][unit] || unit;
+  const lessonText = getLessonDisplayNameForSpec(lesson);
+  
+  const exists = specTableItems.some(item => item.lesson === lesson && item.unit === unit && item.level === level);
+  if (exists) {
+    showAlert((currentLang === "ar") ? "هذا الدرس مضاف بالفعل!" : "Cette leçon est déjà ajoutée!", "error");
+    return;
+  }
+  
+  specTableItems.push({
+    level: levelText,
+    levelKey: level,
+    unit: unit,
+    unitText: unitText,
+    lesson: lesson,
+    lessonText: lessonText,
+    duration: duration
+  });
+  
+  updateSpecTableDisplay();
+  document.getElementById("lessonSpec").value = "";
+}
+
+function getLessonDisplayNameForSpec(lessonKey) {
+  if (currentLang === "fr" && lessonNamesFr[lessonKey]) {
+    return lessonNamesFr[lessonKey];
+  }
+  return lessonKey;
+}
+
+function updateSpecTableDisplay() {
+  const container = document.getElementById("specItemsList");
+  if (!container) return;
+  
+  if (specTableItems.length === 0) {
+    container.innerHTML = '<div style="color: #999; text-align: center;">لم تتم إضافة أي درس بعد</div>';
+    return;
+  }
+  
+  let html = '';
+  specTableItems.forEach((item, index) => {
+    html += `
+      <div class="item-card">
+        <div class="item-info">
+          <span>📚 ${item.level}</span>
+          <span>📖 ${item.unitText}</span>
+          <span>📘 ${item.lessonText}</span>
+          <span>⏱️ ${item.duration}</span>
+        </div>
+        <button class="btn-remove" onclick="removeFromSpecTable(${index})">🗑️ حذف</button>
+      </div>
+    `;
+  });
+  container.innerHTML = html;
+}
+
+function removeFromSpecTable(index) {
+  specTableItems.splice(index, 1);
+  updateSpecTableDisplay();
+}
+
+function loadCustomGoals() {
+  const saved = localStorage.getItem("bilingual_custom_goals");
+  if (saved) {
+    try {
+      customGoals = JSON.parse(saved);
+    } catch(e) {
+      customGoals = {};
+    }
+  }
+}
+
+function saveCustomGoals() {
+  localStorage.setItem("bilingual_custom_goals", JSON.stringify(customGoals));
+}
+
+function getGoalsForLesson(lessonKey) {
+  if (customGoals[lessonKey]) {
+    return customGoals[lessonKey];
+  }
+  return bilingualGoals[lessonKey] || "الأهداف التعليمية غير محددة لهذا الدرس.\nObjectifs pédagogiques non définis pour cette leçon.";
+}
+
+function getLessonDisplayName(lessonKey) {
+  if (currentLang === "fr" && lessonNamesFr[lessonKey]) {
+    return lessonNamesFr[lessonKey];
+  }
+  return lessonKey;
+}
+
+function updateUnits() {
+  const level = document.getElementById("level").value;
+  const unitSelect = document.getElementById("unit");
+  const lessonSelect = document.getElementById("lesson");
+  const goalsTextarea = document.getElementById("goals");
+  const durationContainer = document.getElementById("durationContainer");
+  
+  unitSelect.innerHTML = "";
+  lessonSelect.innerHTML = "";
+  goalsTextarea.value = "";
+  durationContainer.style.display = "none";
+  document.getElementById("duration").value = "";
+  
+  if (!level) {
+    const defaultText = (currentLang === "ar") ? "-- اختر المستوى أولاً --" : "-- Choisir le niveau d'abord --";
+    const option = document.createElement("option");
+    option.value = "";
+    option.textContent = defaultText;
+    unitSelect.appendChild(option);
+    
+    const lessonDefaultText = (currentLang === "ar") ? "-- اختر المستوى أولاً --" : "-- Choisir le niveau d'abord --";
+    const lessonOption = document.createElement("option");
+    lessonOption.value = "";
+    lessonOption.textContent = lessonDefaultText;
+    lessonSelect.appendChild(lessonOption);
+    return;
+  }
+  
+  const levelData = lessonsDataAr[level];
+  if (!levelData) {
+    const noUnitsText = (currentLang === "ar") ? "-- لا توجد وحدات مسجلة --" : "-- Aucune unité enregistrée --";
+    const option = document.createElement("option");
+    option.value = "";
+    option.textContent = noUnitsText;
+    unitSelect.appendChild(option);
+    return;
+  }
+  
+  const availableUnits = Object.keys(levelData);
+  const defaultText = (currentLang === "ar") ? "-- اختر الوحدة --" : "-- Choisir l'unité --";
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "";
+  defaultOption.textContent = defaultText;
+  defaultOption.selected = true;
+  unitSelect.appendChild(defaultOption);
+  
+  availableUnits.forEach(function(unitKey) {
+    const option = document.createElement("option");
+    option.value = unitKey;
+    option.textContent = unitNames[currentLang][unitKey];
+    unitSelect.appendChild(option);
+  });
+  
+  updateLessons();
+}
+
+function updateLessons() {
+  const level = document.getElementById("level").value;
+  const unit = document.getElementById("unit").value;
+  const lessonSelect = document.getElementById("lesson");
+  const goalsTextarea = document.getElementById("goals");
+  const durationContainer = document.getElementById("durationContainer");
+  
+  lessonSelect.innerHTML = "";
+  goalsTextarea.value = "";
+  durationContainer.style.display = "none";
+  document.getElementById("duration").value = "";
+  
+  if (!level || !unit) {
+    const defaultText = (currentLang === "ar") ? "-- اختر المستوى والوحدة أولاً --" : "-- Choisir le niveau et l'unité d'abord --";
+    const option = document.createElement("option");
+    option.value = "";
+    option.textContent = defaultText;
+    lessonSelect.appendChild(option);
+    return;
+  }
+  
+  const levelData = lessonsDataAr[level];
+  if (!levelData) {
+    const noDataText = (currentLang === "ar") ? "-- لا توجد دروس مسجلة --" : "-- Aucune leçon enregistrée --";
+    const option = document.createElement("option");
+    option.value = "";
+    option.textContent = noDataText;
+    lessonSelect.appendChild(option);
+    return;
+  }
+  
+  const lessons = levelData[unit];
+  
+  if (!lessons || lessons.length === 0) {
+    const noLessonsText = (currentLang === "ar") ? "-- لا توجد دروس مسجلة لهذه الوحدة --" : "-- Aucune leçon enregistrée pour cette unité --";
+    const option = document.createElement("option");
+    option.value = "";
+    option.textContent = noLessonsText;
+    lessonSelect.appendChild(option);
+    return;
+  }
+  
+  const defaultText = (currentLang === "ar") ? "-- اختر الدرس --" : "-- Choisir la leçon --";
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "";
+  defaultOption.textContent = defaultText;
+  defaultOption.selected = true;
+  lessonSelect.appendChild(defaultOption);
+  
+  lessons.forEach(function(lessonKey) {
+    const option = document.createElement("option");
+    option.value = lessonKey;
+    option.textContent = getLessonDisplayName(lessonKey);
+    lessonSelect.appendChild(option);
+  });
+}
+
+function updateUnitsSpec() {
+  const level = document.getElementById("levelSpec").value;
+  const unitSelect = document.getElementById("unitSpec");
+  const lessonSelect = document.getElementById("lessonSpec");
+  
+  unitSelect.innerHTML = "";
+  lessonSelect.innerHTML = '<option value="">-- اختر المستوى والوحدة أولاً --</option>';
+  document.getElementById("durationSpec").value = "";
+  
+  if (!level) {
+    const defaultText = (currentLang === "ar") ? "-- اختر المستوى أولاً --" : "-- Choisir le niveau d'abord --";
+    const option = document.createElement("option");
+    option.value = "";
+    option.textContent = defaultText;
+    unitSelect.appendChild(option);
+    return;
+  }
+  
+  const levelData = lessonsDataAr[level];
+  if (!levelData) {
+    const noUnitsText = (currentLang === "ar") ? "-- لا توجد وحدات مسجلة --" : "-- Aucune unité enregistrée --";
+    const option = document.createElement("option");
+    option.value = "";
+    option.textContent = noUnitsText;
+    unitSelect.appendChild(option);
+    return;
+  }
+  
+  const availableUnits = Object.keys(levelData);
+  const defaultText = (currentLang === "ar") ? "-- اختر الوحدة --" : "-- Choisir l'unité --";
+  const defaultOption = document.createElement("option");
+  defaultOption.value = "";
+  defaultOption.textContent = defaultText;
+  defaultOption.selected = true;
+  unitSelect.appendChild(defaultOption);
+  
+  availableUnits.forEach(function(unitKey) {
+    const option = document.createElement("option");
+    option.value = unitKey;
+    option.textContent = unitNames[currentLang][unitKey];
+    unitSelect.appendChild(option);
+  });
+}
+
+function updateLessonsSpec() {
+  const level = document.getElementById("levelSpec").value;
+  const unit = document.getElementById("unitSpec").value;
+  const lessonSelect = document.getElementById("lessonSpec");
+  const durationInput = document.getElementById("durationSpec");
+  
+  lessonSelect.innerHTML = '<option value="">-- اختر الدرس --</option>';
+  durationInput.value = "";
+  
+  if (!level || !unit) {
+    lessonSelect.innerHTML = '<option value="">-- اختر المستوى والوحدة أولاً --</option>';
+    return;
+  }
+  
+  const levelData = lessonsDataAr[level];
+  if (!levelData) return;
+  
+  const lessons = levelData[unit];
+  if (!lessons || lessons.length === 0) return;
+  
+  lessons.forEach(function(lessonKey) {
+    const option = document.createElement("option");
+    option.value = lessonKey;
+    option.textContent = getLessonDisplayName(lessonKey);
+    lessonSelect.appendChild(option);
+  });
+  
+  lessonSelect.onchange = function() {
+    const selectedLesson = lessonSelect.value;
+    if (selectedLesson && durationByLesson[selectedLesson]) {
+      durationInput.value = durationByLesson[selectedLesson];
+    } else {
+      durationInput.value = "";
+    }
+  };
+}
+
+function autoFillLessonData() {
+  const lessonKey = document.getElementById("lesson").value;
+  const goalsTextarea = document.getElementById("goals");
+  const durationContainer = document.getElementById("durationContainer");
+  const durationInput = document.getElementById("duration");
+  
+  if (lessonKey && lessonKey !== "") {
+    durationContainer.style.display = "flex";
+    const goalsText = getGoalsForLesson(lessonKey);
+    goalsTextarea.value = goalsText;
+    goalsTextarea.readOnly = false;
+    goalsTextarea.style.backgroundColor = "#fff";
+    
+    if (durationByLesson[lessonKey]) {
+      durationInput.value = durationByLesson[lessonKey];
+    } else {
+      durationInput.value = (currentLang === "ar") ? "مدة غير محددة" : "Durée non définie";
+    }
+  } else {
+    goalsTextarea.value = "";
+    durationContainer.style.display = "none";
+    durationInput.value = "";
+  }
+}
+
+function saveGoals() {
+  const lessonKey = document.getElementById("lesson").value;
+  const currentGoals = document.getElementById("goals").value;
+  
+  if (lessonKey && currentGoals) {
+    customGoals[lessonKey] = currentGoals;
+    saveCustomGoals();
+    document.getElementById("goalsStatus").innerHTML = (currentLang === "ar") ? "✅ تم حفظ الأهداف!" : "✅ Objectifs enregistrés !";
+    document.getElementById("goalsStatus").style.color = "#4caf50";
+    showAlert((currentLang === "ar") ? "تم حفظ الأهداف التعليمية" : "Objectifs pédagogiques enregistrés", "success");
+    setTimeout(() => {
+      document.getElementById("goalsStatus").innerHTML = "";
+    }, 3000);
+  } else if (lessonKey) {
+    showAlert((currentLang === "ar") ? "الرجاء إدخال الأهداف قبل الحفظ" : "Veuillez saisir les objectifs avant d'enregistrer", "error");
+  }
+}
+
+function toggleUILang() {
+  if (currentLang === "ar") {
+    currentLang = "fr";
+    
+    document.body.style.direction = "ltr";
+    document.body.style.textAlign = "left";
+    document.querySelector(".container").style.direction = "ltr";
+    document.querySelector(".container").style.textAlign = "left";
+    
+    document.getElementById("langBtn").innerHTML = "🌐 العربية";
+    document.getElementById("title").innerHTML = "📘 Espace intelligent de planification et d'évaluation pédagogique";
+    document.getElementById("label-task").innerHTML = "Type de tâche :";
+    document.getElementById("label-level").innerHTML = "Niveau :";
+    document.getElementById("label-unit").innerHTML = "Unité :";
+    document.getElementById("label-lesson").innerHTML = "Leçon :";
+    document.getElementById("label-duration").innerHTML = "⏱️ Durée :";
+    document.getElementById("label-goals").innerHTML = "Objectifs pédagogiques (arabe et français) :";
+    document.getElementById("label-exercise").innerHTML = "Exercice à transformer :";
+    document.getElementById("label-paragraphs").innerHTML = "Titres des paragraphes / contenus essentiels :";
+    document.getElementById("label-level-spec").innerHTML = "Niveau :";
+    document.getElementById("label-unit-spec").innerHTML = "Unité :";
+    document.getElementById("label-lesson-spec").innerHTML = "Leçon :";
+    document.getElementById("label-duration-spec").innerHTML = "⏱️ Durée :";
+    
+    const taskType = document.getElementById("taskType").value;
+    if (taskType === "situation") {
+      document.getElementById("generateBtn").innerHTML = "🚀 Transformer en situations-problèmes";
+    } else if (taskType === "lesson_plan") {
+      document.getElementById("generateBtn").innerHTML = "📋 Créer la fiche de leçon";
+    } else if (taskType === "spec_table") {
+      document.getElementById("generateBtn").innerHTML = "📊 Créer le tableau de spécification";
+    } else if (taskType === "test") {
+      document.getElementById("generateTestBtn").innerHTML = "📝 Créer l'examen à partir du tableau de spécification";
+    } else {
+      document.getElementById("generateBtn").innerHTML = "🚀 Générer";
+    }
+    
+    document.getElementById("result").innerHTML = "Le résultat apparaîtra ici...";
+    
+    document.getElementById("paragraphs").placeholder = "Écrire les titres des paragraphes ou contenus essentiels";
+    document.getElementById("exercise").placeholder = "Entrez l'exercice à transformer en situations-problèmes...";
+    document.getElementById("goals").placeholder = "Sera rempli automatiquement lors de la sélection de la leçon - Objectifs en arabe et français";
+    
+    const taskTypeSelect = document.getElementById("taskType");
+    taskTypeSelect.options[0].text = "Transformer un exercice en situations-problèmes";
+    taskTypeSelect.options[1].text = "Préparer une fiche de leçon";
+    taskTypeSelect.options[2].text = "Préparer un devoir surveillé";
+    taskTypeSelect.options[3].text = "Préparer un tableau de spécification";
+    taskTypeSelect.options[4].text = "Préparer une grille de correction";
+    taskTypeSelect.options[5].text = "Préparer un plan de soutien";
+    
+  } else {
+    currentLang = "ar";
+    
+    document.body.style.direction = "rtl";
+    document.body.style.textAlign = "right";
+    document.querySelector(".container").style.direction = "rtl";
+    document.querySelector(".container").style.textAlign = "right";
+    
+    document.getElementById("langBtn").innerHTML = "🌐 Français";
+    document.getElementById("title").innerHTML = "📘 فضاء التخطيط والتقويم التربوي الذكي";
+    document.getElementById("label-task").innerHTML = "نوع المهمة:";
+    document.getElementById("label-level").innerHTML = "المستوى:";
+    document.getElementById("label-unit").innerHTML = "الوحدة:";
+    document.getElementById("label-lesson").innerHTML = "الدرس:";
+    document.getElementById("label-duration").innerHTML = "⏱️ المدة:";
+    document.getElementById("label-goals").innerHTML = "الأهداف التعليمية (بالعربية والفرنسية):";
+    document.getElementById("label-exercise").innerHTML = "التمرين المراد تحويله:";
+    document.getElementById("label-paragraphs").innerHTML = "عناوين الفقرات / المحتويات الأساسية:";
+    document.getElementById("label-level-spec").innerHTML = "المستوى:";
+    document.getElementById("label-unit-spec").innerHTML = "الوحدة:";
+    document.getElementById("label-lesson-spec").innerHTML = "الدرس:";
+    document.getElementById("label-duration-spec").innerHTML = "⏱️ المدة:";
+    
+    const taskType = document.getElementById("taskType").value;
+    if (taskType === "situation") {
+      document.getElementById("generateBtn").innerHTML = "🚀 تحويل إلى وضعيات-مشكلة";
+    } else if (taskType === "lesson_plan") {
+      document.getElementById("generateBtn").innerHTML = "📋 إنشاء بطاقة الدرس";
+    } else if (taskType === "spec_table") {
+      document.getElementById("generateBtn").innerHTML = "📊 إنشاء جدول التخصيص";
+    } else if (taskType === "test") {
+      document.getElementById("generateTestBtn").innerHTML = "📝 إنشاء الفرض من جدول التخصيص";
+    } else {
+      document.getElementById("generateBtn").innerHTML = "🚀 إنشاء";
+    }
+    
+    document.getElementById("result").innerHTML = "النتيجة ستظهر هنا...";
+    
+    document.getElementById("paragraphs").placeholder = "اكتب عناوين الفقرات أو المحتويات الأساسية (اختياري)";
+    document.getElementById("exercise").placeholder = "أدخل التمرين الذي تريد تحويله إلى وضعيات-مشكلة...";
+    document.getElementById("goals").placeholder = "سيتم تعبئتها تلقائياً عند اختيار الدرس - الأهداف باللغتين معاً";
+    
+    const taskTypeSelect = document.getElementById("taskType");
+    taskTypeSelect.options[0].text = "تحويل تمرين إلى وضعيات-مشكلة";
+    taskTypeSelect.options[1].text = "إعداد بطاقة درس";
+    taskTypeSelect.options[2].text = "إعداد فرض محروس";
+    taskTypeSelect.options[3].text = "إعداد جدول التخصيص";
+    taskTypeSelect.options[4].text = "إعداد شبكة التصحيح";
+    taskTypeSelect.options[5].text = "إعداد خطة الدعم والمعالجة";
+  }
+  
+  updateUnits();
+  updateUnitsSpec();
+  updateSpecTableDisplay();
+  toggleFieldsByTaskType();
+}
+
+function validateForm() {
+  const taskType = document.getElementById("taskType").value;
+  
+  if (taskType === "spec_table" || taskType === "test") {
+    if (specTableItems.length === 0) {
+      showAlert((currentLang === "ar") ? "الرجاء إضافة درس واحد على الأقل" : "Veuillez ajouter au moins une leçon", "error");
+      return false;
+    }
+    return true;
+  }
+  
+  const level = document.getElementById("level").value;
+  const unit = document.getElementById("unit").value;
+  const lesson = document.getElementById("lesson").value;
+  
+  if (!level) {
+    showAlert((currentLang === "ar") ? "الرجاء اختيار المستوى" : "Veuillez choisir le niveau", "error");
+    return false;
+  }
+  
+  if (!unit) {
+    showAlert((currentLang === "ar") ? "الرجاء اختيار الوحدة" : "Veuillez choisir l'unité", "error");
+    return false;
+  }
+  
+  if (!lesson) {
+    showAlert((currentLang === "ar") ? "الرجاء اختيار الدرس" : "Veuillez choisir la leçon", "error");
+    return false;
+  }
+  
+  return true;
+}
+
+function showAlert(message, type) {
+  const alertDiv = document.getElementById("alert");
+  alertDiv.textContent = message;
+  alertDiv.className = `alert alert-${type}`;
+  alertDiv.style.display = "block";
+  setTimeout(() => {
+    alertDiv.style.display = "none";
+  }, 3000);
+}
+
+function fallbackCopyToClipboard(text) {
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.style.position = "fixed";
+  textarea.style.top = "-9999px";
+  textarea.style.left = "-9999px";
+  document.body.appendChild(textarea);
+  textarea.select();
+  document.execCommand("copy");
+  document.body.removeChild(textarea);
+  showAlert((currentLang === "ar") ? "✅ تم نسخ البرومبت إلى الحافظة!" : "✅ Prompt copié dans le presse-papier !", "success");
+}
+
+function copyPromptToClipboard() {
+  if (window.generatedPrompt) {
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(window.generatedPrompt).then(function() {
+        showAlert((currentLang === "ar") ? "✅ تم نسخ البرومبت إلى الحافظة!" : "✅ Prompt copié dans le presse-papier !", "success");
+      }).catch(function() {
+        fallbackCopyToClipboard(window.generatedPrompt);
+      });
+    } else {
+      fallbackCopyToClipboard(window.generatedPrompt);
+    }
+  }
+}
+
+// دالة إنشاء جدول التخصيص
+function generate() {
+  if (!validateForm()) {
+    return;
+  }
+  
+  const taskType = document.getElementById("taskType").value;
+  
+  if (taskType === "spec_table") {
+    // بناء نص الدروس المضافة
+    let lessonsText = "";
+    let totalDuration = 0;
+    
+    specTableItems.forEach((item, index) => {
+      const hours = parseFloat(item.duration.replace('h', ''));
+      totalDuration += isNaN(hours) ? 0 : hours;
+      lessonsText += `${index + 1}. ${item.lessonText} (${item.unitText}) - المدة: ${item.duration}\n`;
+    });
+    
+    const prompt = `أنت مفتش تربوي في مادة الفيزياء والكيمياء بالمغرب، متمكن من التوجيهات التربوية الرسمية الخاصة بالتقويم.
+
+المطلوب:
+إعداد جدول التخصيص فقط لاختبار/فرض محروس في مادة الفيزياء والكيمياء.
+
+المعطيات:
+- الدروس المقررة:
+${lessonsText}
+
+- مجموع المدد الزمنية: ${totalDuration}h
+- النقطة الإجمالية للفرض: 20 نقطة
+
+قواعد إعداد الجدول:
+- وزع النقط على الدروس حسب وزنها الزمني من مجموع المدد.
+- اعتمد المستويات التقويمية الآتية:
+  1. الاسترداد والاستغلال: 40%
+  2. التطبيق: 40%
+  3. الوضعية المشكلة: 20%
+- احسب نصيب كل درس من النقط، ثم وزعه على المستويات الثلاثة حسب النسب أعلاه.
+- أضف سطرًا أخيرًا للمجموع.
+- اجعل طبيعة الأسئلة عامة وصالحة لكل درس، ولا تذكر فيها مفاهيم أو مضامين خاصة بدرس معين.
+- استعمل عبارات عامة مثل: أسئلة تعريف، تصنيف، استثمار وثيقة، تطبيق مباشر، تحليل وضعية، تفسير معطيات، اقتراح حل، تعليل جواب.
+- لا تقدم مقدمة ولا خاتمة ولا أي شرح خارج الجدول.
+
+صيغة الإخراج المطلوبة:
+قدّم فقط جدولًا بالأعمدة الآتية:
+
+| الدرس | الاسترداد والاستغلال 40% | التطبيق 40% | الوضعية المشكلة 20% | مجموع النقط | طبيعة الأسئلة |`;
+    
+    window.generatedPrompt = prompt;
+    
+    const escapedPrompt = prompt.replace(/[&<>]/g, function(m) {
+      if (m === '&') return '&amp;';
+      if (m === '<') return '&lt;';
+      if (m === '>') return '&gt;';
+      return m;
+    }).replace(/\n/g, '<br>');
+    
+    document.getElementById("result").innerHTML = `
+      <div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
+        <button onclick="copyPromptToClipboard()" style="background: #2196f3; padding: 10px 20px;">📋 نسخ البرومبت</button>
+        <button onclick="window.open('https://chat.openai.com/', '_blank')" style="background: #4caf50; padding: 10px 20px;">🚀 فتح ChatGPT</button>
+      </div>
+      <hr>
+      <strong>البرومبت المُنشأ (جدول التخصيص):</strong><br><br>
+      ${escapedPrompt}
+    `;
+    
+    showAlert((currentLang === "ar") ? "✅ تم إنشاء برومبت جدول التخصيص!" : "✅ Prompt du tableau de spécification créé !", "success");
+  } else if (taskType === "situation") {
+    const levelSelect = document.getElementById("level");
+    const levelText = levelSelect.options[levelSelect.selectedIndex].text;
+    const unitSelect = document.getElementById("unit");
+    const unitText = unitSelect.options[unitSelect.selectedIndex].text;
+    const lessonKey = document.getElementById("lesson").value;
+    const lessonDisplayName = getLessonDisplayName(lessonKey);
+    const exercise = document.getElementById("exercise").value;
+    const duration = document.getElementById("duration").value;
+    const goals = document.getElementById("goals").value;
+    
+    const prompt = `أنت مفتش تربوي في مادة الفيزياء والكيمياء بالمغرب، متمكن من المقاربة بالكفايات.
+
+المطلوب:
+تحويل التمرين إلى ثلاث وضعيات-مشكلة لتقويم الكفاية: بسيطة، متوسطة، وصعبة/مركبة.
+
+المعطيات:
+- المستوى: ${levelText}
+- الوحدة: ${unitText}
+- الدرس: ${lessonDisplayName}
+- المدة: ${duration}
+- الأهداف التعليمية (بالعربية والفرنسية):
+${goals}
+
+التمرين المراد تحويله:
+${exercise || "لا يوجد تمرين. أنجز الوضعيات انطلاقًا من المستوى والدرس والأهداف التعليمية."}
+
+الشروط:
+- أن تتضمن كل وضعية من سؤالين إلى ثلاثة أسئلة.
+- أن يكون مجموع تنقيط كل وضعية 4 نقط.
+- إدراج التنقيط مباشرة بجانب كل سؤال، مثل: (1 ن).
+- احترام مستوى المتعلمين وأهداف التعلم.
+- تقديم عناصر الإجابة والأهداف التعليمية في جدول بعد كل وضعية.
+
+ملاحظات:
+- لا تقدم مقدمة ولا خاتمة.
+- لا تضع سلم تنقيط منفصل.
+- التزم بالبنية المطلوبة.`;
+    
+    window.generatedPrompt = prompt;
+    
+    const escapedPrompt = prompt.replace(/[&<>]/g, function(m) {
+      if (m === '&') return '&amp;';
+      if (m === '<') return '&lt;';
+      if (m === '>') return '&gt;';
+      return m;
+    }).replace(/\n/g, '<br>');
+    
+    document.getElementById("result").innerHTML = `
+      <div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
+        <button onclick="copyPromptToClipboard()" style="background: #2196f3; padding: 10px 20px;">📋 نسخ البرومبت</button>
+        <button onclick="window.open('https://chat.openai.com/', '_blank')" style="background: #4caf50; padding: 10px 20px;">🚀 فتح ChatGPT</button>
+      </div>
+      <hr>
+      <strong>البرومبت المُنشأ:</strong><br><br>
+      ${escapedPrompt}
+    `;
+    
+    showAlert((currentLang === "ar") ? "✅ تم إنشاء البرومبت! اضغط على 'نسخ البرومبت' ثم الصقه في ChatGPT" : "✅ Prompt créé ! Copiez-le et collez-le dans ChatGPT", "success");
+  } else if (taskType === "lesson_plan") {
+    const levelSelect = document.getElementById("level");
+    const levelText = levelSelect.options[levelSelect.selectedIndex].text;
+    const unitSelect = document.getElementById("unit");
+    const unitText = unitSelect.options[unitSelect.selectedIndex].text;
+    const lessonKey = document.getElementById("lesson").value;
+    const lessonDisplayName = getLessonDisplayName(lessonKey);
+    const duration = document.getElementById("duration").value;
+    const paragraphs = document.getElementById("paragraphs").value;
+    const goals = document.getElementById("goals").value;
+    
+    const prompt = `أنت مفتش تربوي في مادة الفيزياء والكيمياء بالمغرب، متمكن من المقاربة بالكفايات.
+
+المطلوب:
+إعداد بطاقة درس متكاملة وفق المقاربة بالكفايات.
+
+المعطيات:
+- المستوى: ${levelText}
+- الوحدة: ${unitText}
+- الدرس: ${lessonDisplayName}
+- المدة: ${duration}
+- الأهداف التعليمية (بالعربية والفرنسية):
+${goals}
+
+المحتويات الأساسية / عناوين الفقرات:
+${paragraphs || "غير محددة"}
+
+المطلوب في بطاقة الدرس:
+- تقديم وضعية مشكلة للانطلاق
+- أنشطة تعليمية مع الإجراءات والوسائل
+- التقويم والتقويم التشخيصي
+- احترام المقاربة بالكفايات
+
+ملاحظات:
+- لا تقدم مقدمة ولا خاتمة.
+- التزم بالهيكلة المهنية لبطاقة الدرس.`;
+    
+    window.generatedPrompt = prompt;
+    
+    const escapedPrompt = prompt.replace(/[&<>]/g, function(m) {
+      if (m === '&') return '&amp;';
+      if (m === '<') return '&lt;';
+      if (m === '>') return '&gt;';
+      return m;
+    }).replace(/\n/g, '<br>');
+    
+    document.getElementById("result").innerHTML = `
+      <div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
+        <button onclick="copyPromptToClipboard()" style="background: #2196f3; padding: 10px 20px;">📋 نسخ البرومبت</button>
+        <button onclick="window.open('https://chat.openai.com/', '_blank')" style="background: #4caf50; padding: 10px 20px;">🚀 فتح ChatGPT</button>
+      </div>
+      <hr>
+      <strong>البرومبت المُنشأ (بطاقة الدرس):</strong><br><br>
+      ${escapedPrompt}
+    `;
+    
+    showAlert((currentLang === "ar") ? "✅ تم إنشاء برومبت بطاقة الدرس!" : "✅ Prompt de la fiche de leçon créé !", "success");
+  } else {
+    const levelSelect = document.getElementById("level");
+    const levelText = levelSelect.options[levelSelect.selectedIndex]?.text || "";
+    const unitSelect = document.getElementById("unit");
+    const unitText = unitSelect.options[unitSelect.selectedIndex]?.text || "";
+    const lessonKey = document.getElementById("lesson").value;
+    const lessonDisplayName = getLessonDisplayName(lessonKey);
+    const exercise = document.getElementById("exercise").value;
+    const duration = document.getElementById("duration").value;
+    const paragraphs = document.getElementById("paragraphs").value;
+    const goals = document.getElementById("goals").value;
+    
+    const prompt = `أنت مفتش تربوي في مادة الفيزياء والكيمياء بالمغرب.
+
+المعطيات:
+- نوع المهمة: ${document.getElementById("taskType").options[document.getElementById("taskType").selectedIndex].text}
+- المستوى: ${levelText}
+- الوحدة: ${unitText}
+- الدرس: ${lessonDisplayName}
+- المدة: ${duration}
+- الأهداف التعليمية (بالعربية والفرنسية):
+${goals}
+- التمرين: ${exercise || "غير موجود"}
+- المحتويات الأساسية: ${paragraphs || "غير محددة"}
+
+أنجز المهمة المطلوبة بكل احترافية.`;
+    
+    window.generatedPrompt = prompt;
+    
+    const escapedPrompt = prompt.replace(/[&<>]/g, function(m) {
+      if (m === '&') return '&amp;';
+      if (m === '<') return '&lt;';
+      if (m === '>') return '&gt;';
+      return m;
+    }).replace(/\n/g, '<br>');
+    
+    document.getElementById("result").innerHTML = `
+      <div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
+        <button onclick="copyPromptToClipboard()" style="background: #2196f3; padding: 10px 20px;">📋 نسخ البرومبت</button>
+        <button onclick="window.open('https://chat.openai.com/', '_blank')" style="background: #4caf50; padding: 10px 20px;">🚀 فتح ChatGPT</button>
+      </div>
+      <hr>
+      <strong>البرومبت المُنشأ:</strong><br><br>
+      ${escapedPrompt}
+    `;
+    
+    showAlert((currentLang === "ar") ? "✅ تم إنشاء البرومبت!" : "✅ Prompt créé !", "success");
+  }
+}
+
+// دالة إنشاء الفرض المحروس من جدول التخصيص
+function generateTestWithSpecTable() {
+  if (!validateForm()) {
+    return;
+  }
+  
+  // بناء نص الدروس المضافة مع أهدافها
+  let lessonsWithGoals = "";
+  let totalDuration = 0;
+  
+  specTableItems.forEach((item, index) => {
+    const hours = parseFloat(item.duration.replace('h', ''));
+    totalDuration += isNaN(hours) ? 0 : hours;
+    const goals = getGoalsForLesson(item.lesson);
+    lessonsWithGoals += `${index + 1}. ${item.lessonText} (${item.unitText}) - المدة: ${item.duration}\n   الأهداف التعليمية:\n${goals}\n\n`;
+  });
+  
+  const prompt = `أنت مفتش تربوي في مادة الفيزياء والكيمياء بالمغرب، متمكن من التوجيهات التربوية الرسمية الخاصة بالتقويم والمقاربة بالكفايات.
+
+المطلوب:
+إنجاز فرض كتابي محروس في مادة الفيزياء والكيمياء، مع الاستناد إلى جدول التخصيص المقدم وأهداف التعلم للدروس المعنية.
+
+المعطيات:
+- الدروس المقررة مع أهدافها التعليمية:
+${lessonsWithGoals}
+
+- مجموع المدد الزمنية: ${totalDuration}h
+- النقطة الإجمالية للفرض: 20 نقطة
+
+هيكلة الفرض المطلوبة:
+- التمرين الأول: 8 نقاط (أسئلة متنوعة تغطي دروس الفرض)
+- التمرين الثاني: 8 نقاط (أسئلة متنوعة تغطي دروس الفرض)
+- التمرين الثالث (وضعية مشكلة): 4 نقاط
+
+قواعد إنجاز الفرض:
+- راع التدرج في الصعوبة من التمرين الأول إلى الثالث.
+- وزع الأسئلة على الدروس المعنية حسب وزنها الزمني.
+- اعتمد المستويات التقويمية: الاسترداد والاستغلال، التطبيق، الوضعية المشكلة.
+- استعمل عبارات الأسئلة المناسبة لكل مستوى (تعريف، تصنيف، استثمار وثيقة، تطبيق مباشر، تحليل وضعية، تفسير معطيات، اقتراح حل، تعليل جواب).
+- التمرين الثالث يجب أن يكون وضعية مشكلة إدماجية تتطلب تعبئة معارف من عدة دروس.
+- أدرج التنقيط بجانب كل سؤال.
+- قدم سلم التنقيط (الإجابة النموذجية وتوزيع النقاط) بعد أسئلة الفرض مباشرة.
+
+صيغة الإخراج المطلوبة:
+قدّم الفرض بالهيكلة التالية:
+
+---
+الفرض المحروس رقم: (1)
+المادة: الفيزياء والكيمياء
+المستوى: ...
+المدة: ساعة واحدة
+
+التمرين الأول: (8 ن)
+السؤال 1: ... (... ن)
+السؤال 2: ... (... ن)
+السؤال 3: ... (... ن)
+
+التمرين الثاني: (8 ن)
+السؤال 1: ... (... ن)
+السؤال 2: ... (... ن)
+السؤال 3: ... (... ن)
+
+التمرين الثالث: وضعية مشكلة (4 ن)
+النص: ...
+الأسئلة:
+1- ... (... ن)
+2- ... (... ن)
+
+سلم التنقيط:
+(تقديم الإجابة النموذجية وتوزيع النقاط لكل سؤال)
+---
+
+ملاحظات:
+- لا تقدم مقدمة ولا خاتمة.
+- احترم بدقة هيكلة الفرض المطلوبة.
+- تأكد من أن الفرض يغطي جميع الدروس المقررة.`;
+  
+  window.generatedPrompt = prompt;
+  
+  const escapedPrompt = prompt.replace(/[&<>]/g, function(m) {
+    if (m === '&') return '&amp;';
+    if (m === '<') return '&lt;';
+    if (m === '>') return '&gt;';
+    return m;
+  }).replace(/\n/g, '<br>');
+  
+  document.getElementById("result").innerHTML = `
+    <div style="display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap;">
+      <button onclick="copyPromptToClipboard()" style="background: #2196f3; padding: 10px 20px;">📋 نسخ البرومبت</button>
+      <button onclick="window.open('https://chat.openai.com/', '_blank')" style="background: #4caf50; padding: 10px 20px;">🚀 فتح ChatGPT</button>
+    </div>
+    <hr>
+    <strong>البرومبت المُنشأ (الفرض المحروس):</strong><br><br>
+    ${escapedPrompt}
+  `;
+  
+  showAlert((currentLang === "ar") ? "✅ تم إنشاء برومبت الفرض المحروس من جدول التخصيص!" : "✅ Prompt de l'examen créé à partir du tableau de spécification !", "success");
+}
+
+// تهيئة التطبيق
+loadCustomGoals();
+toggleFieldsByTaskType();
+
+document.getElementById("level").addEventListener("change", updateUnits);
+document.getElementById("unit").addEventListener("change", updateLessons);
+document.getElementById("lesson").addEventListener("change", autoFillLessonData);
+document.getElementById("levelSpec").addEventListener("change", updateUnitsSpec);
+document.getElementById("unitSpec").addEventListener("change", updateLessonsSpec);
+
+updateUnits();
+updateUnitsSpec();
+</script>
+
+</body>
+</html>
